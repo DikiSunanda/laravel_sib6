@@ -7,9 +7,12 @@
                             <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
                             <li class="breadcrumb-item active">Tables</li>
                         </ol>
-                      
+
                         <div class="card mb-4">
-            
+                        <div class="card-header">
+                                <a href="{{route('produk.create')}}" class="btn btn-lg btn-primary">   
+                                <i class="fa-solid fa-plus"></i></a>
+                            </div>
                             <div class="card-body">
                                 <table id="datatablesSimple">
                                 <thead>
@@ -19,7 +22,9 @@
                                             <th>Harga Beli</th>
                                             <th>Harga Jual</th>
                                             <th>Stok</th>
+                                            <th>Minimal Stok</th>
                                             <th>Jenis Produk</th>
+                                            <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tfoot>
@@ -29,7 +34,9 @@
                                             <th>Harga Beli</th>
                                             <th>Harga Jual</th>
                                             <th>Stok</th>
+                                            <th>Minimal Stok</th>
                                             <th>Jenis Produk</th>
+                                            <th>Action</th>
                                         </tr>
                                     </tfoot>
                                     <tbody>
@@ -41,7 +48,11 @@
                                             <td>{{$p->harga_beli}}</td>
                                             <td>{{$p->harga_jual}}</td>
                                             <td>{{$p->stok}}</td>
+                                            <td>{{$p->min_stok}}</td>
                                             <td>{{$p->jenis_produk}}</td>
+                                            <td>
+                                                <a href="{{route('produk.show', $p->id)}}" class="btn btn-success btn-sm">Detail</a>
+                                            </td>
                                            
                                         </tr>
                                         @endforeach
@@ -50,4 +61,6 @@
                             </div>
                         </div>
                     </div>
+
+
 @endsection

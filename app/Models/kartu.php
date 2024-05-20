@@ -13,6 +13,8 @@ class kartu extends Model
         'kode', 'nama', 'diskon', 'iuran'
     ];
 
+    public $timestamps = false;
+
     public function pelanggan(){
         return $this->hasMany(pelanggan::class);
     }

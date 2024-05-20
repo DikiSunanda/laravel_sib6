@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Models\produk;
 use App\Models\jenisProduk;
 
@@ -28,6 +29,8 @@ class produkController extends Controller
     public function create()
     {
         //
+        $jenisProduk = DB::table('jenis_produk')->get();
+        return view('admin.produk.create', compact('jenisProduk'));
     }
 
     /**
@@ -35,7 +38,17 @@ class produkController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //tambah data produk
+        DB::table('produk')->insert([
+            'kode'=>$request->kode,
+            'nama'=>$request->nama,
+            'harga_beli'=>$request->harga_beli,
+            'harga_jual'=>$request->harga_jual,
+            'stok'=>$request->stok,
+            'min_stok'=>$request->min_stok,
+            'jenis_produk_id'=>$request->jenis_produk_id,
+        ]);
+        return redirect('admin/produk');
     }
 
     /**
@@ -43,7 +56,11 @@ class produkController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $produk = produk::join('jenis_produk', 'jenis_produk_id', '=', 'jenis_produk.id')
+        ->select('produk.*', 'jenis_produk.nama as jenis_produk')
+        ->where('produk.id', $id)
+        ->get();
+        return view('admin.produk.detail', compact('produk'));
     }
 
     /**
