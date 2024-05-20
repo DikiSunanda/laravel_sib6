@@ -51,7 +51,7 @@
                                             <td>{{$p->min_stok}}</td>
                                             <td>{{$p->jenis_produk}}</td>
                                             <td>
-                                                <a href="{{route('produk.show', $p->id)}}" class="btn btn-success btn-sm">Detail</a>
+                                                <a href="{{route('produk.show', $p->id)}}" class="btn btn-success btn-sm"><i class="fa-solid fa-eye"></i></a>
                                             </td>
                                            
                                         </tr>
